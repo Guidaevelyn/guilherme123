@@ -23,5 +23,6 @@ int main(){
     }
     if(per == i){
         printf("errou");
+        printf("muito burro🤣😂🤣🤣🤣");
     }
 }
