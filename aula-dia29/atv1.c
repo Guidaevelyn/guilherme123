@@ -1,75 +1,88 @@
 #include <stdio.h>
-#include <time.h>
-#include <stdlib.h>
-#define TAM 20
-int main(){
-    srand(time(NULL));
-    int jogada[TAM],fechado[TAM],jog,emoji8=1,emoji6=2,emoji4=3,emoji2=4, i ,aux=0, alea, fim=0;
-    printf("|");
-    for(i=0 ; i < TAM; i++){
-        if(i<10){
-            printf("0%i|",i);
-        }
-        else{
-            printf("%i|", i );
-        }
-    }
-    for(i=0; i<TAM; i++){
-        jogada[i] = 0;
-        fechado[i]= 0;
-    }
-    for(i=0; i < 8 ; i++){
-        alea = rand()%20;
-        if(jogada[alea] == 0){
-            jogada[alea] = 1;
-        }
-        else {
-            i--;
-        }
-    }
-    for(i=0;i<6; i++){
-        alea = rand()%20;
-        if(jogada[alea] == 0){
-            jogada[alea] = 2;
-        }
-        else{
-            i--;
-        }
-    }
-    for(i=0; i <4; i++){
-        alea = rand()%20;
-        if(jogada[alea] == 0){
-            jogada[alea] = 3;
-        }
-        else{
-            i--;
-        }
-    }
-    for(i=0; i < 2; i++){
-        alea = rand()%20;
-        if(jogada[alea] == 0){
-            jogada[alea] = 4;
-        }
-        else{
-            i--;
-        }
-    }
-    printf("\n");
-    for(i=0;i<20; i++){
-        printf(" %i",jogada[i]);
-    }
-    printf("|");
-    while(fim==0){
-        for(i=0;i<TAM;i++){
-            if(fechado[i]==0){
-                printf("❌|");
-            }
-            if(fechado[i]>0){
-                
-            }
-        }
-    }
 
+// Declaração das sub-rotinas
+float adicao();
+float subtracao();
+float multiplicacao();
+float divisao();
 
+int main() {
+    int opcao;
+    float resultado;
 
+    do {
+        // Menu de opções
+        printf("Escolha uma operação:\n");
+        printf("1. Adição\n");
+        printf("2. Subtração\n");
+        printf("3. Multiplicação\n");
+        printf("4. Divisão\n");
+        printf("5. Sair\n");
+        printf("Digite a opção desejada: ");
+        scanf("%d", &opcao);
+
+        // Chama a sub-rotina correspondente e exibe o resultado
+        switch(opcao) {
+            case 1:
+                resultado = adicao();
+                printf("Resultado da adição: %.2f\n", resultado);
+                break;
+            case 2:
+                resultado = subtracao();
+                printf("Resultado da subtração: %.2f\n", resultado);
+                break;
+            case 3:
+                resultado = multiplicacao();
+                printf("Resultado da multiplicação: %.2f\n", resultado);
+                break;
+            case 4:
+                resultado = divisao();
+                if (resultado != -1) {
+                    printf("Resultado da divisão: %.2f\n", resultado);
+                } else {
+                    printf("Erro: Divisão por zero.\n");
+                }
+                break;
+            case 5:
+                printf("Saindo...\n");
+                break;
+            default:
+                printf("Opção inválida. Tente novamente.\n");
+                break;
+        }
+    } while(opcao != 5);
+
+    return 0;
+}
+
+float adicao() {
+    float a, b;
+    printf("Digite dois números para adição: ");
+    scanf("%f %f", &a, &b);
+    return a + b;
+}
+
+float subtracao() {
+    float a, b;
+    printf("Digite dois números para subtração: ");
+    scanf("%f %f", &a, &b);
+    return a - b;
+}
+
+float multiplicacao() {
+    float a, b;
+    printf("Digite dois números para multiplicação: ");
+    scanf("%f %f", &a, &b);
+    return a * b;
+}
+
+float divisao() {
+    float a, b;
+    printf("Digite dois números para divisão: ");
+    scanf("%f %f", &a, &b);
+    if (b != 0) {
+        return a / b;
+    } else {
+        return -1; // Indicador de erro
+    }
 }
