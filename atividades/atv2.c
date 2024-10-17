@@ -63,6 +63,7 @@ int main(){
         }
     }
     printf("\n");
+    printf("encontre os emojis de oculos\n");
     /*for(i=0;i<20; i++){
         printf(" %i",jogada[i]);
     }*/
